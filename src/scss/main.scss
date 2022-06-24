@@ -1,4 +1,19 @@
-body {
-    height: 100vh;
-    background-color: black;
+@import "./base/fonts.scss";
+@import "./base/variables.scss";
+@import "./base/ui.scss";
+
+@import "./sections/message.scss";
+@import "./sections/header.scss";
+@import "./sections/blog.scss";
+@import "./sections/offer.scss";
+@import "./sections/footer.scss";
+
+.section-wrapper {
+    margin: 0 auto;
+    padding: 0 20px;
+
+    @media screen and (min-width: 1200px) {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
 }

@@ -1,0 +1,147 @@
+.header {
+    padding: 0;
+    margin: 16px 10px;
+
+    @media screen and (min-width: 1199px) {
+        margin: 40px 0;
+        padding-left: 12.5%;
+        padding-right: 3.75%;
+    }
+
+    @media screen and (min-width: 1615px) {
+        padding: 0;
+        max-width: 1200px;
+        margin: 40px auto;
+    }
+
+    &-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &__burger {
+        order: 1;
+        position: relative;
+        height: 16px;
+        width: 24px;
+        cursor: pointer;
+
+        @media screen and (min-width: 1199px) {
+            display: none;
+        }
+
+        &::after,
+        &::before,
+        &-stick {
+            position: absolute;
+            content: "";
+            height: 2px;
+            width: 24px;
+            background-color: $message-bg;
+            border-radius: 2px;
+        }
+
+        &::after {
+            bottom: 0px;
+        }
+
+        &::before {
+            top: 0px;
+        }
+
+        &-stick {
+            top: 7px;
+        }
+
+        & + input {
+            display: none;
+
+            &:checked {
+                & ~ .header__menu {
+                    max-height: 100%;
+                }
+            }
+        }
+    }
+
+    &__name {
+        order: 2;
+        font: 400 18px/22px $font-primary;
+        color: $black;
+
+        @media screen and (min-width: 1199px) {
+            order: 1;
+        }
+    }
+
+    &__menu {
+        order: 4;
+        display: flex;
+        flex: 100%;
+        flex-direction: column;
+        height: 100%;
+        max-height: 0;
+        overflow: hidden;
+
+        @media screen and (min-width: 1199px) {
+            order: 2;
+            flex: unset;
+            flex-direction: row;
+            max-height: 100%;
+        }
+
+        &-item {
+            font: 500 14px/18px $font-primary;
+            color: $black;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            padding-top: 6px;
+            position: relative;
+            margin: 0 15px;
+
+            &:last-child {
+                border-bottom: 3px solid $green;
+            }
+
+            &:not(:nth-child(2)) {
+                padding-right: 20px;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    display: block;
+                    right: 0;
+                    top: 37%;
+                    height: 0;
+                    width: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid $black;
+                }
+            }
+        }
+    }
+
+    &__auth {
+        order: 3;
+
+        &-log {
+            width: 90px;
+            display: none;
+            margin-right: 10px;
+
+            @media screen and (min-width: 1199px) {
+                display: inline-block;
+            }
+        }
+
+        &-get {
+            width: 126px;
+
+            @media screen and (min-width: 1199px) {
+                width: 160px;
+            }
+        }
+    }
+}

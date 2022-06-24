@@ -18,7 +18,7 @@ gulp.task("styles", function () {
                 level: 2,
             })
         )
-        .pipe(gulp.dest("./build/"))
+        .pipe(gulp.dest("./build/css"))
         .pipe(browserSync.stream());
 });
 
@@ -26,13 +26,20 @@ gulp.task("watch", function () {
     browserSync.init({
         server: {
             port: 3000,
-            baseDir: "./",
+            baseDir: "./build/",
         },
     });
-    gulp.watch("./src/scss**/*.scss", gulp.series('styles'));
-    gulp.watch("./*.html").on("change", browserSync.reload);
+    gulp.watch(
+        [
+            "./src/scss/*.scss",
+            "./src/scss/base/*.scss",
+            "./src/scss/sections/*.scss",
+        ],
+        gulp.series("styles")
+    );
+    gulp.watch("./build/*.html").on("change", browserSync.reload);
 });
 
-gulp.task('build', gulp.series('styles'))
+gulp.task("build", gulp.series("styles"));
 
-gulp.task('dev', gulp.series('build', 'watch'))
+gulp.task("dev", gulp.series("build", "watch"));
