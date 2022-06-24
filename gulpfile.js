@@ -26,7 +26,7 @@ gulp.task("watch", function () {
     browserSync.init({
         server: {
             port: 3000,
-            baseDir: "./build/",
+            baseDir: "./",
         },
     });
     gulp.watch(
@@ -37,7 +37,7 @@ gulp.task("watch", function () {
         ],
         gulp.series("styles")
     );
-    gulp.watch("./build/*.html").on("change", browserSync.reload);
+    gulp.watch("./*.html").on("change", browserSync.reload);
 });
 
 gulp.task("build", gulp.series("styles"));
